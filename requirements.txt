@@ -1,0 +1,9 @@
+requests
+python-dotenv
+langchain 
+langchain-community
+langchain-text-splitters
+langchain-openai
+langchainhub
+beautifulsoup4
+chromadb
