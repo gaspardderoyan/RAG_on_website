@@ -1,37 +1,8 @@
-# https://python.langchain.com/docs/use_cases/question_answering/quickstart
+# PARSE THE SITEMAP INTO URLS 
+from sitemap_parser import extract_urls_from_sitemap
 
-import requests
-import xml.etree.ElementTree as ET
-
-# Function to extract URLs from the sitemap
-def extract_urls_from_sitemap(sitemap_url):
-    response = requests.get(sitemap_url)
-    root = ET.fromstring(response.content)
-    urls = [elem.text for elem in root.iter('{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
-    return urls
-
-# Example usage
 sitemap_url = 'https://manuel.fr/sitemap.xml'
 urls = extract_urls_from_sitemap(sitemap_url)
-print(urls)
-
-
-# from bs4 import BeautifulSoup
-# import requests
-
-# def extract_text_with_beautifulsoup(urls):
-#     texts = []
-#     for url in urls:
-#         response = requests.get(url)
-#         soup = BeautifulSoup(response.text, 'html.parser')
-#         text = soup.get_text()
-#         texts.append(text)
-#     return texts
-
-# # Assuming 'urls' is your list of URLs
-# texts = extract_text_with_beautifulsoup(urls)
-
-
 
 # Import API keys into enviroment variables
 import os
