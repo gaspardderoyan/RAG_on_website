@@ -4,19 +4,11 @@ from sitemap_parser import extract_urls_from_sitemap
 sitemap_url = 'https://manuel.fr/sitemap.xml'
 urls = extract_urls_from_sitemap(sitemap_url)
 
-# Import API keys into enviroment variables
-import os
-import dotenv
+# IMPORT API KEYS INTO ENVIROMENT VARIABLES
+from config_loader import load_environment_variable
 
-dotenv.load_dotenv()
+load_environment_variable()
 
-langchain_api_key = os.getenv("LANGCHAIN_API_KEY")
-openai_api_key = os.getenv("OPENAI_API_KEY")
-
-
-os.environ["LANGCHAIN_TRACING_V2"] = "true"
-os.environ["LANGCHAIN_API_KEY"] = langchain_api_key
-os.environ["OPENAI_API_KEY"] = openai_api_key
 
 ###
 
