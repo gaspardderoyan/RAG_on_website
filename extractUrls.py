@@ -1,56 +1,26 @@
-# PARSE THE SITEMAP INTO URLS 
+from config_loader import load_environment_variable
 from sitemap_parser import extract_urls_from_sitemap
+from url_text_loader import load_text_from_urls
+from text_splitter import recursive_text_splitter
+from embeddings_vector_store import store_in_vector_db
 
+# IMPORT API KEYS INTO ENVIROMENT VARIABLES
+load_environment_variable()
+
+# PARSE THE SITEMAP INTO URLS 
 sitemap_url = 'https://manuel.fr/sitemap.xml'
 urls = extract_urls_from_sitemap(sitemap_url)
 
-# IMPORT API KEYS INTO ENVIROMENT VARIABLES
-from config_loader import load_environment_variable
-
-load_environment_variable()
-
-
-###
-
 # LOAD URLS AS TEXT
+docs = load_text_from_urls(urls)
 
-from langchain_community.document_loaders import WebBaseLoader
-import nest_asyncio # to load urls concurently 
-
-# fixes a bug in jupyter
-nest_asyncio.apply()
-
-loader = WebBaseLoader(urls)
-loader.requests_per_second = 1
-docs = loader.load()
-
-###
 
 # SPLIT THE TEXT
+all_splits = recursive_text_splitter(docs)
 
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-
-text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=1000,
-    chunk_overlap=200,
-    add_start_index=True
-)
-
-all_splits = text_splitter.split_documents(docs)
-
-###
 
 # STORE IN VECTOR DB
-
-from langchain_openai import OpenAIEmbeddings
-from langchain_community.vectorstores import Chroma
-
-# embeddings_model = OpenAIEmbeddings()
-
-vectorstore = Chroma.from_documents(
-    documents= all_splits,
-    embedding= OpenAIEmbeddings()
-)
+vectorstore = store_in_vector_db(all_splits, use_ollama= True, ollama_model='nomic-embed-text:latest')
 
 
 retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": 6})
