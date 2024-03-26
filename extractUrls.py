@@ -60,3 +60,6 @@ rag_chain = (
 
 for chunk in rag_chain.stream("Qui a cree ce site?"):
     print(chunk, end="", flush=True)
+
+
+# this is a test
