@@ -15,6 +15,7 @@ Project to create a chatbot to ask questions on a website's data using RAG.
   - https://medium.com/@vndee.huynh/build-your-own-rag-and-run-it-locally-langchain-ollama-streamlit-181d42805895
   - https://github.com/hwchase17/chroma-langchain/blob/master/qa.ipynb
   - https://github.com/hwchase17/chroma-langchain/blob/master/persistent-qa.ipynb
+  - https://blog.streamlit.io/build-a-chatbot-with-custom-data-sources-powered-by-llamaindex/
 
 - Stuff
   - Use Streamlit for frontend
