@@ -16,7 +16,7 @@ docs = load_text_from_urls(urls)
 
 
 # SPLIT THE TEXT
-all_splits = recursive_text_splitter(docs)
+all_splits = recursive_text_splitter(docs, chunk_size=1500, chunk_overlap=300)
 
 
 # STORE IN VECTOR DB
