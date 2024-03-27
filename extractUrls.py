@@ -20,7 +20,7 @@ all_splits = recursive_text_splitter(docs)
 
 
 # STORE IN VECTOR DB
-vectorstore = store_in_vector_db(all_splits, use_ollama= True, ollama_model='nomic-embed-text:latest')
+vectorstore = store_in_vector_db(all_splits, use_ollama= False, ollama_model='nomic-embed-text:latest')
 
 
 retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": 6})
