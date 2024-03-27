@@ -18,10 +18,12 @@ def store_in_vector_db(documents, use_ollama=False, ollama_model='nomic-embed-te
     else:
         embeddings_model = OpenAIEmbeddings()
 
+    persist_directory = 'db'
     # Create the vector store and populate it with documents
     vectorstore = Chroma.from_documents(
         documents=documents,
-        embedding=embeddings_model
+        embedding=embeddings_model,
+        persist_directory=persist_directory
     )
-
+    vectorstore.persist()
     return vectorstore
