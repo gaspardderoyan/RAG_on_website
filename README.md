@@ -16,6 +16,7 @@ Project to create a chatbot to ask questions on a website's data using RAG.
   - https://github.com/hwchase17/chroma-langchain/blob/master/qa.ipynb
   - https://github.com/hwchase17/chroma-langchain/blob/master/persistent-qa.ipynb
   - https://blog.streamlit.io/build-a-chatbot-with-custom-data-sources-powered-by-llamaindex/
+  - https://www.koyeb.com/tutorials/use-llamaindex-streamlit-and-openai-to-query-unstructured-data
 
 - Stuff
   - Use Streamlit for frontend
@@ -27,3 +28,5 @@ Project to create a chatbot to ask questions on a website's data using RAG.
   - [ ] querying the db directly?
 - [ ] Create a chatbot (has access to previous messages)
 - [ ] using pinecone as a vectorstore?
+
+- [ ] check the last link on koyeb.com, my main app, and the llamaindex_test notebook, mashup all 3
